@@ -1,12 +1,12 @@
 <!doctype html>
-<html lang="es">
+<html lang="en">
 
 	<head>
 		<meta charset="utf-8">
 
-		<title>Curso Grails</title>
+		<title>Grails Intro</title>
 
-		<meta name="description" content="Curso Grails">
+		<meta name="description" content="Grails Intro">
 		<meta name="author" content="Miguel Cobá">
 
 		<meta name="apple-mobile-web-app-capable" content="yes" />
@@ -38,18 +38,24 @@
 			<div class="slides">
 				<section>
 					<h1>Grails</h1>
-					<h3>Introducción a Grails</h3>
-					<p>
-						<small><a href="http://miguel.leugim.com.mx">Miguel Cobá</a> / <a href="http://twitter.com/MiguelCobaMtz">@MiguelCobaMtz</a></small>
-					</p>
 				</section>
 
 				<section>
-					<h2>Grails</h2>
+					<h2>Grails features</h2>
           <ul>
+            <li class="fragment">Full stack framework + plugins</li>
+            <li class="fragment">Groovy language</li>
+            <li class="fragment">Convention over configuration</li>
+            <li class="fragment">Object Relational Mapping (GORM) build on top of Hibernate</li>
+            <li class="fragment">View technology (GSPs)</li>
+            <li class="fragment">Controller layer built on Spring MVC</li>
+            <li class="fragment">Embedded Tomcat</li>
+            <li class="fragment">Dependency Injection with Spring</li>
+            <li class="fragment">i18n support</li>
+          </ul>
 	
 					<aside class="notes">
-					  Características de Grails	
+					  Grails features
 					</aside>
 				</section>
 
@@ -58,22 +64,982 @@
         </section> 
   
 				<section>
-					<h2>Instalación de Java</h2>
+					<h2>Java setup</h2>
           <ol>
             <li class="fragment">http://www.oracle.com/technetwork/java/javase/downloads/index.html</li>
             <li class="fragment">Java SE Development Kit 7u21</li>
             <li class="fragment">Crear variable de ambiente JAVA_HOME</li>
             <li class="fragment">(Windows) Agregar %JAVA_HOME%\bin al PATH</li>
-            <li class="fragment">(GNU/Linux) Agregar $JAVA_HOME\bin al PATH</li>
+            <li class="fragment">(GNU/Linux) Agregar $JAVA_HOME/bin al PATH</li>
           </ol>
         </section> 
 
 				<section>
-					<h2>Instalación de Grails</h2>
+					<h2>Grails setup</h2>
           <ol>
+            <li class="fragment">http://grails.org/download</li>
+            <li class="fragment">Grails 2.1.0</li>
+            <li class="fragment">Unzip to C:\grails-2.1.0</li>
+            <li class="fragment">Create GRAILS_HOME environment variable</li>
+            <li class="fragment">(Windows) Add %GRAILS_HOME%\bin to PATH</li>
+            <li class="fragment">(GNU/Linux) Add $GRAILS_HOME/bin to PATH</li>
           </ol>
         </section> 
 
+        <section>
+          <h2>Test grails installation</h2>
+          <pre><code class="language-bash" data-trim>
+$ grails -version
+
+Grails version: 2.1.0
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Create application</h2>
+          <pre><code class="language-bash" data-trim>
+$ grails create-app tutorial
+$ cd tutorial
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Create controller</h2>
+          <pre><code class="language-bash" data-trim>
+$ grails create-controller hello
+          </code></pre>
+        </section>
+
+        <section>
+          <p>grails-app/controllers/tutorial/HelloController.groovy</p>
+          <pre><code data-trim>
+package tutorial
+
+class HelloController {
+  def world = {
+    render "Hello World!"
+  }
+}
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Run application</h2>
+          <pre><code class="language-bash" data-trim>
+$ grails run-app
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Access application</h2>
+          <p><a href="http://localhost:8080/tutorial">http://localhost:8080/tutorial</a></p>
+        </section>
+
+        <section>
+          <section>
+            <h2>Integrated Development Environments</h2>
+          </section>
+          <section>
+            <h3>IntelliJ IDEA</h3>
+            <p><a href="http://www.jetbrains.com/idea">http://www.jetbrains.com/idea</a></p>
+            <pre><code class="language-bash" data-trim>
+$ grails integrate-with --intellij
+            </code></pre>
+          </section>
+          <section>
+            <h3>NetBeans</h3>
+            <p><a href="http://netbeans.org">http://netbeans.org</a></p>
+          </section>
+          <section>
+            <h3>Eclipse</h3>
+            <p><a href="http://eclipse.org">http://eclipse.org</a></p>
+          </section>
+          <section>
+            <h3>Spring Tool Suite</h3>
+            <p><a href="http://spring.io/tools/sts">http://spring.io/tools/sts</a></p>
+          </section>
+          <section>
+            <h3>Groovy/Grails Tool Suite</h3>
+            <p><a href="http://spring.io/tools/ggts">http://spring.io/tools/ggts</a></p>
+          </section>
+          <section>
+            <h3>TextMate</h3>
+            <p><a href="http://macromates.com/">http://macromates.com</a></p>
+            <pre><code class="language-bash" data-trim>
+$ grails integrate-with --textmate
+            </code></pre>
+          </section>
+          <section>
+            <h3>Sublime Text</h3>
+            <p><a href="http://www.sublimetext.com/">http://www.sublimetext.com/</a></p>
+          </section>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2></h2>
+          <pre><code data-trim>
+          </code></pre>
+        </section>
+
+ 
 				<section>
 					<h1>Fin</h1>
 					<p>Miguel Cobá / miguel.leugim.com.mx</p>
