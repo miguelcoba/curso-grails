@@ -176,110 +176,226 @@ $ grails integrate-with --textmate
         </section>
 
         <section>
-          <h2></h2>
+          <h2>Grails directory structure</h2>
           <pre><code data-trim>
+grails-app     - top level app dir
+  conf         - Configuration files
+  controllers  - web controllers
+  domain       - application domain models
+  i18n         - i18n resource files
+  services     - services layer
+  taglib       - custom tag libraries
+  views        - Groovy Server Pages
+scripts        - scripts for grails
+src            - Supporting sources
+test           - unit, integration and functional tests
           </code></pre>
         </section>
 
         <section>
-          <h2></h2>
+          <h1>Grails commands</h1>
+        </section>
+
+        <section>
+          <h2>Running a Grails application</h2>
           <pre><code data-trim>
+$ grails run-app
           </code></pre>
         </section>
 
         <section>
-          <h2></h2>
+          <h2>Testing a Grails application</h2>
           <pre><code data-trim>
+$ grails test-app
           </code></pre>
         </section>
 
         <section>
-          <h2></h2>
+          <h2>Deploying a Grails application</h2>
           <pre><code data-trim>
+$ grails war
           </code></pre>
         </section>
 
         <section>
-          <h2></h2>
+          <h2>Scaffolding</h2>
           <pre><code data-trim>
+$ grails generate-all tutorial.Hello
+          </code></pre>
+          <ul>
+            <li>generates skeleton code
+              <ul>
+                <li>controller</li>
+                <li>views</li>
+              </ul>
+            </li>
+            <li>it SHOULD always be customized</li>
+            <li>it is <span class="fragment highlight-red">only</span> a starting point</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Creating artifacts</h2>
+          <pre><code class="language-bash" data-trim>
+$ grails create-controller
+$ grails create-domain-class
+$ grails create-unit-test
+$ grails create-tag-lib
           </code></pre>
         </section>
 
         <section>
-          <h2></h2>
+          <h1>Configuration</h1>
+        </section>
+
+        <section>
+          <h2>Basic configuration</h2>
+          <p>grails/conf/Config.groovy</p>
+        </section>
+
+        <section>
+          <h2>Custom configuration</h2>
+          <p>Set values</p>
           <pre><code data-trim>
+my.app.value = "some value"
+          </code></pre>
+ 
+          <p>Read values (in controllers/services/taglibs)</p>
+          <pre><code data-trim>
+grailsApplication.config.my.app.value
+          </code></pre>
+
+          <pre><code data-trim>
+import org.codehaus.groovy.grails.commons.*
+
+CodeHolder.config.my.app.hello
           </code></pre>
         </section>
 
         <section>
-          <h2></h2>
+          <h2>Logging</h2>
           <pre><code data-trim>
+log4j = {
+  error 'package1', 'package2'
+  warn 'package3'
+}
           </code></pre>
         </section>
 
         <section>
-          <h2></h2>
+          <section>
+            <h2>Logging packages</h2>
+          </section>
+          <section>
+            <p>Class loading</p>
+            <pre><code data-trim>
+org.codejaus.groovy.grails.commons
+            </code></pre>
+          </section>
+          <section>
+            <p>Web request processing</p>
+            <pre><code data-trim>
+org.codejaus.groovy.grails.web
+            </code></pre>
+          </section>
+          <section>
+            <p>URL mapping</p>
+            <pre><code data-trim>
+org.codejaus.groovy.grails.web.mapping
+            </code></pre>
+          </section>
+          <section>
+            <p>Plugin activity</p>
+            <pre><code data-trim>
+org.codejaus.groovy.grails.plugins
+            </code></pre>
+          </section>
+          <section>
+            <p>Spring activity</p>
+            <pre><code data-trim>
+org.springframework
+            </code></pre>
+          </section>
+          <section>
+            <p>Hibernate activity</p>
+            <pre><code data-trim>
+org.hibernate
+            </code></pre>
+          </section>
+        </section>
+
+        <section>
+          <h2>GORM</h2>
           <pre><code data-trim>
+grails.gorm.failOnError = true
+
+  to throws Exception on validation failure on save() method
+
+grails.gorm.autoFlush = true
+
+  to force flushing of Hibernate session on save(), delete(), merge() methods
           </code></pre>
         </section>
 
         <section>
-          <h2></h2>
-          <pre><code data-trim>
+          <h1>Environments</h1>
+        </section>
+
+        <section>
+          <h2>Per environment configuration</h2>
+          <p>Config files</p>
+          <p>Application code</p>
+        </section>
+
+        <section>
+          <h2>Preset</h2>
+          <ul>
+            <li>dev</li>
+            <li>test</li>
+            <li>prod</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Environments in command line</h2>
+          <pre><code class="language-bash" data-trim>
+grails [environment] [command name]
+grails run-app        // runs app in default mode (default is dev)
+grails prod run-app   // runs app in production mode
+grails test war       // creates war for the test environment
           </code></pre>
         </section>
 
         <section>
-          <h2></h2>
+          <h2>Programmatic environment detection</h2>
           <pre><code data-trim>
+import grails.util.Environment
+
+switch(Environment.current) {
+  case Environment.DEVELOPMENT:
+    someConfigForDev()
+    break
+  case Environment.PRODUCTION:
+    someConfigForProd()
+    break
+}
           </code></pre>
         </section>
 
         <section>
-          <h2></h2>
+          <h2>Per environment bootstrap</h2>
           <pre><code data-trim>
-          </code></pre>
-        </section>
-
-        <section>
-          <h2></h2>
-          <pre><code data-trim>
-          </code></pre>
-        </section>
-
-        <section>
-          <h2></h2>
-          <pre><code data-trim>
-          </code></pre>
-        </section>
-
-        <section>
-          <h2></h2>
-          <pre><code data-trim>
-          </code></pre>
-        </section>
-
-        <section>
-          <h2></h2>
-          <pre><code data-trim>
-          </code></pre>
-        </section>
-
-        <section>
-          <h2></h2>
-          <pre><code data-trim>
-          </code></pre>
-        </section>
-
-        <section>
-          <h2></h2>
-          <pre><code data-trim>
-          </code></pre>
-        </section>
-
-        <section>
-          <h2></h2>
-          <pre><code data-trim>
+def init = { ServletContext ctx ->
+  environments {
+    production {
+      ctx.setAttribute("env", "prod")
+    }
+    development {
+      someConfigForDev()
+    }
+  }
+  someConfigForAllEnvironments()
+}
           </code></pre>
         </section>
 
