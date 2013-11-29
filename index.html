@@ -1,47 +1,47 @@
 <!doctype html>
 <html lang="en">
 
-	<head>
-		<meta charset="utf-8">
+  <head>
+    <meta charset="utf-8">
 
-		<title>Grails Intro</title>
+    <title>Grails Intro</title>
 
-		<meta name="description" content="Grails Intro">
-		<meta name="author" content="Miguel Cobá">
+    <meta name="description" content="Grails Intro">
+    <meta name="author" content="Miguel Cobá">
 
-		<meta name="apple-mobile-web-app-capable" content="yes" />
-		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<link rel="stylesheet" href="revealjs/css/reveal.min.css">
-		<link rel="stylesheet" href="revealjs/css/theme/default.css" id="theme">
+    <link rel="stylesheet" href="revealjs/css/reveal.min.css">
+    <link rel="stylesheet" href="revealjs/css/theme/default.css" id="theme">
 
-		<!-- For syntax highlighting -->
-		<link rel="stylesheet" href="revealjs/lib/css/zenburn.css">
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="revealjs/lib/css/zenburn.css">
 
-		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
-		<script>
-			document.write( '<link rel="stylesheet" href="revealjs/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
-		</script>
+    <!-- If the query includes 'print-pdf', use the PDF print sheet -->
+    <script>
+      document.write( '<link rel="stylesheet" href="revealjs/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+    </script>
 
-		<!--[if lt IE 9]>
-		<script src="revealjs/lib/js/html5shiv.js"></script>
-		<![endif]-->
-	</head>
+    <!--[if lt IE 9]>
+    <script src="revealjs/lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
 
-	<body>
+  <body>
 
-		<div class="reveal">
+    <div class="reveal">
 
-			<!-- Any section element inside of this container is displayed as a slide -->
-			<div class="slides">
-				<section>
-					<h1>Grails</h1>
-				</section>
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides">
+        <section>
+          <h1>Grails</h1>
+        </section>
 
-				<section>
-					<h2>Grails features</h2>
+        <section>
+          <h2>Grails features</h2>
           <ul>
             <li class="fragment">Full stack framework + plugins</li>
             <li class="fragment">Groovy language</li>
@@ -53,18 +53,18 @@
             <li class="fragment">Dependency Injection with Spring</li>
             <li class="fragment">i18n support</li>
           </ul>
-	
-					<aside class="notes">
-					  Grails features
-					</aside>
-				</section>
+  
+          <aside class="notes">
+            Grails features
+          </aside>
+        </section>
 
-				<section>
-					<h2>Grails 2.1</h2>
+        <section>
+          <h2>Grails 2.1</h2>
         </section> 
   
-				<section>
-					<h2>Java setup</h2>
+        <section>
+          <h2>Java setup</h2>
           <ol>
             <li class="fragment">http://www.oracle.com/technetwork/java/javase/downloads/index.html</li>
             <li class="fragment">Java SE Development Kit 7u21</li>
@@ -74,8 +74,8 @@
           </ol>
         </section> 
 
-				<section>
-					<h2>Grails setup</h2>
+        <section>
+          <h2>Grails setup</h2>
           <ol>
             <li class="fragment">http://grails.org/download</li>
             <li class="fragment">Grails 2.1.0</li>
@@ -400,87 +400,259 @@ def init = { ServletContext ctx ->
         </section>
 
         <section>
-          <h2></h2>
+          <h2>Environments in application code</h2>
           <pre><code data-trim>
+import grails.util.Environment
+
+Environment.executeForCurrentEnvironment {
+  production {
+    someConfig()
+  }
+  development {
+    someOtherConfig()
+  }
+}
           </code></pre>
         </section>
 
         <section>
-          <h2></h2>
+          <h1>DataSource</h1>
+        </section>
+
+        <section>
+          <h2>JDBC</h2>
+          <ul>
+            <li>put jar in grails project lib/ directory</li>
+            <li>environment aware</li>
+            <li>use a runtime dependency</li>
           <pre><code data-trim>
+dependencies {
+  // mysql
+  runtime 'mysql:mysql-connector-java:5.1.5'
+  // sqlserver
+  runtime 'net.sourceforge.jtds:jtds:1.2.4'
+}
           </code></pre>
         </section>
 
         <section>
-          <h2></h2>
+          <h2>JDBC Configuration</h2>
+          <ul>
+            <li>driverClassName</li>
+            <li>username</li>
+            <li>password</li>
+            <li>url</li>
+            <li>dbCreate</li>
+            <li>pooled</li>
+            <li>logSql</li>
+            <li>dialect</li>
+            <li>properties </li>
+            <li>jndiName</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Configuration example</h2>
           <pre><code data-trim>
+dataSource {
+  pooled = true
+  dbCreate = "update"
+  url = "jdbc:mysql://localhost/yourDB"
+  driverClassName = "com.mysql.jdbc.Driver"
+  dialect = org.hibernate.dialect.MySQL5InnoDBDialect
+  username = "yourUser"
+  password = "yourPassword"
+  properties {
+    maxActive = 50
+      maxIdle = 25
+      minIdle = 5
+      initialSize = 5
+      minEvictableIdleTimeMillis = 60000
+      timeBetweenEvictionRunsMillis = 60000
+      maxWait = 10000
+      validationQuery = "/* ping */"
+  }
+}
           </code></pre>
         </section>
 
         <section>
-          <h2></h2>
+          <h2>Externalized configuration</h2>
           <pre><code data-trim>
+grails.config.locations = [
+  "classpath:${appName}-config.properties",
+  "classpath:${appName}-config.groovy",
+  "file:${userHome}/.grails/${appName}-config.properties",
+  "file:${userHome}/.grails/${appName}-config.groovy"
+]
+
+read:                           
+  grailsApplication
           </code></pre>
         </section>
 
         <section>
-          <h2></h2>
+          <h2>Versioning</h2>
           <pre><code data-trim>
+// set
+$ grails set-version 0.99
+application.properties
+
+// read in controllers
+def version = grailsApplication.metadata['app.version']
+def grailsVer = grailsApplication.metadata['app.grails.version']
+
+def version = grails.util.GrailsUtil.grailsVersion
+            </code></pre>
+        </section>
+
+        <section>
+          <h2>Documentation</h2>
+          <p>Textile variation</p>
+          <pre><code data-trim>
+src/doc/guide/1. first chapter.gdoc
+src/doc/guide/2. this will be the second chapter.gdoc
+          </code></pre>
+
+          <pre><code class="language-bash" data-trim>
+$ grails doc    # generate documentation
           </code></pre>
         </section>
 
         <section>
-          <h2></h2>
+          <section>
+            <h2>Dependency resolution</h2>
+          </section>
+          <section>
+            <h2>Repositories</h2>
+            <ul>
+              <li>maven</li>
+              <li>directory</li>
+            </ul>
+          </section>
+          <section>
+            <h3>Scope</h3>
+            <ul>
+              <li>build</li>
+              <li>compile</li>
+              <li>runtime</li>
+              <li>test</li>
+              <li>provided</li>
+            </ul>
+          </section>
+        </section>
+
+        <section>
+          <h2>Configuration</h2>
           <pre><code data-trim>
+// group:name:version
+runtime "com.mysql:mysql-connector-java:5.1.5"
+runtime(group: 'com.mysql', 
+        name: 'mysql-connector-java',
+        version: '5.1.5')
+
+// plugin dependencies
+plugins {
+  test ':spock:0.5-groovy'
+  runtime ':jquery:1.4.2.7'
+}
           </code></pre>
         </section>
 
         <section>
-          <h2></h2>
-          <pre><code data-trim>
-          </code></pre>
+          <h1>Command line</h1>
         </section>
 
         <section>
-          <h2></h2>
-          <pre><code data-trim>
-          </code></pre>
+          <section>
+            <h1>Gant</h1>
+          </section>
+          <section>
+            <h2>Groovy wrapper around Apache Ant</h2>
+          </section>
+          <section>
+            <h2>Search locations</h2>
+            <pre><code class="language-bash" data-trim>
+USER_HOME/.grails/scripts
+PROJECT_HOME/scripts
+PROJECT_HOME/plugins/*/scripts
+GRAILS_HOME/scripts
+            </code></pre>
+          </section>
+          <section>
+            <h2>Example</h2>
+            <p>Script</p>
+            <pre><code data-trim>
+$ grails run-app
+            </code></pre>
+
+            <p>Searches</p>
+            <pre><code class="language-bash" data-trim>
+USER_HOME/.grails/scripts/RunApp.groovy
+PROJECT_HOME/scripts/RunApp.groovy
+PLUGINS_HOME/*/scripts/RunApp.groovy
+GLOBAL_PLUGINS_HOME/*/scripts/RunApp.groovy
+GRAILS_HOME/scripts/RunApp.groovy
+            </code></pre>
+          </section>
         </section>
 
         <section>
-          <h2></h2>
-          <pre><code data-trim>
-          </code></pre>
+          <section>
+            <h1>Ant and Maven</h1>
+          </section>
+          <section>
+            <h2>Ant integration</h2>
+            <pre><code data-trim>
+$ grails integrate-with --ant 
+build.xml
+            </code></pre>
+            <h2>Targets</h2>
+            <ul>
+              <li>clean</li>
+              <li>compile</li>
+              <li>test</li>
+              <li>run</li>
+              <li>war</li>
+              <li>deploy</li>
+            </ul>
+          </section>
+          <section>
+            <h2>Maven integration</h2>
+            <pre><code data-trim>
+$ grails create-pom com.mycompany
+pom.xml
+            </code></pre>
+            <h2>Targets</h2>
+            <ul>
+              <li>compile</li>
+              <li>package</li>
+              <li>install</li>
+              <li>test</li>
+              <li>clean</li>
+              <li>grails:create-controller</li>
+              <li>grails:create-domain-class</li>
+              <li>grails:create-integration-test</li>
+            </ul>
+          </section>
         </section>
 
         <section>
-          <h2></h2>
-          <pre><code data-trim>
-          </code></pre>
+          <h1>GORM</h1>
         </section>
 
         <section>
-          <h2></h2>
-          <pre><code data-trim>
-          </code></pre>
-        </section>
-
-        <section>
-          <h2></h2>
-          <pre><code data-trim>
-          </code></pre>
-        </section>
-
-        <section>
-          <h2></h2>
-          <pre><code data-trim>
-          </code></pre>
-        </section>
-
-        <section>
-          <h2></h2>
-          <pre><code data-trim>
-          </code></pre>
+          <h2>Domain classes</h2>
+          <ul>
+            <li>hold state about business processes</li>
+            <li>implement behavior</li>
+            <li>relationships between domain classes
+              <ul>
+                <li>one-to-one</li>
+                <li>one-to-many</li>
+              </ul>
+            </li>
+          </ul>
         </section>
 
         <section>
@@ -1156,43 +1328,43 @@ def init = { ServletContext ctx ->
         </section>
 
  
-				<section>
-					<h1>Fin</h1>
-					<p>Miguel Cobá / miguel.leugim.com.mx</p>
-				</section>
+        <section>
+          <h1>Fin</h1>
+          <p>Miguel Cobá / miguel.leugim.com.mx</p>
+        </section>
 
-			</div>
+      </div>
 
-		</div>
+    </div>
 
-		<script src="revealjs/lib/js/head.min.js"></script>
-		<script src="revealjs/js/reveal.min.js"></script>
+    <script src="revealjs/lib/js/head.min.js"></script>
+    <script src="revealjs/js/reveal.min.js"></script>
 
-		<script>
+    <script>
 
-			// Full list of configuration options available here:
-			// https://github.com/hakimel/reveal.js#configuration
-			Reveal.initialize({
-				controls: true,
-				progress: true,
-				history: true,
-				center: true,
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
 
-				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
-				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
 
-				// Optional libraries used to extend on reveal.js
-				dependencies: [
-					{ src: 'revealjs/lib/js/classList.js', condition: function() { return !document.body.classList; } },
-					{ src: 'revealjs/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-					{ src: 'revealjs/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-					{ src: 'revealjs/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-					{ src: 'revealjs/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
-					{ src: 'revealjs/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
-				]
-			});
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+          { src: 'revealjs/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'revealjs/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'revealjs/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'revealjs/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: 'revealjs/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+          { src: 'revealjs/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+        ]
+      });
 
-		</script>
+    </script>
 
-	</body>
+  </body>
 </html>
